@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Input Product</title>
+    <title>Edit Product</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -24,10 +24,11 @@
 @include('navbar')
     
     <div class="container">
-        <h2 class="mb-4 text-center">Input Product</h2>
+        <h2 class="mb-4 text-center">Edit Product</h2>
    
-          <form action="{{ route('products') }}" method="POST" enctype="multipart/form-data">
+          <form action="{{ route('products-update',$product->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="form-row">
                 <div class="form-group col-md-3 d-flex justify-content-end">
                     <label for="kodeBarang" class="form-label">Kode Barang</label>
@@ -36,7 +37,7 @@
                     <label>:</label>
                 </div>
                 <div class="form-group col-md-8">
-                    <input type="text" class="form-control" id="kode_barang" name="kode_barang">
+                    <input type="text" class="form-control" id="kode_barang" name="kode_barang" value="{{ $product->kode_barang }}">
                 </div>
             </div>
             <div class="form-row">
@@ -47,7 +48,7 @@
                     <label>:</label>
                 </div>
                 <div class="form-group col-md-8">
-                    <input type="text" class="form-control" id="nama_barang" name="nama_barang">
+                    <input type="text" class="form-control" id="nama_barang" name="nama_barang" value="{{ $product->nama_barang }}">
                 </div>
             </div>
             <div class="form-row">
@@ -58,7 +59,7 @@
                     <label>:</label>
                 </div>
                 <div class="form-group col-md-8">
-                    <input type="text" class="form-control" id="kategori" name="kategori">
+                    <input type="text" class="form-control" id="kategori" name="kategori" value="{{ $product->kategori }}">
                 </div>
             </div>
             <div class="form-row">
@@ -69,7 +70,7 @@
                     <label>:</label>
                 </div>
                 <div class="form-group col-md-8">
-                    <input type="number" step="any" class="form-control" id="harga" name="harga">
+                    <input type="number" step="any" class="form-control" id="harga" name="harga" value="{{ $product->harga }}">
                 </div>
             </div>
             <div class="form-row">
@@ -80,7 +81,7 @@
                     <label>:</label>
                 </div>
                 <div class="form-group col-md-8">
-                    <input type="number" step="any" class="form-control" id="jumlah_stok" name="jumlah_stok">
+                    <input type="number" step="any" class="form-control" id="jumlah_stok" name="jumlah_stok" value="{{ $product->jumlah_stok }}">
                 </div>
             </div>
             <div class="form-row">
@@ -102,7 +103,7 @@
                     <label>:</label>
                 </div>
                 <div class="form-group col-md-8">
-                    <input type="number" step="any"class="form-control" id="kapasitas" name="kapasitas">
+                    <input type="number" step="any"class="form-control" id="kapasitas" name="kapasitas" value="{{ $product->kapasitas }}">
                 </div>
             </div>
             <div class="form-row">
@@ -113,7 +114,7 @@
                     <label>:</label>
                 </div>
                 <div class="form-group col-md-8">
-                    <input type="number" step="any" class="form-control" id="tinggi" name="tinggi">
+                    <input type="number" step="any" class="form-control" id="tinggi" name="tinggi" value="{{ $product->tinggi }}">
                 </div>
             </div>
             <div class="form-row">
@@ -124,7 +125,7 @@
                     <label>:</label>
                 </div>
                 <div class="form-group col-md-8">
-                    <input type="number" step="any" class="form-control" id="lebar" name="lebar">
+                    <input type="number" step="any" class="form-control" id="lebar" name="lebar" value="{{ $product->lebar }}">
                 </div>
             </div>
             <div class="form-row">
@@ -135,7 +136,7 @@
                     <label>:</label>
                 </div>
                 <div class="form-group col-md-8">
-                    <input type="number" step="any" class="form-control" id="diameter_tabung" name="diameter_tabung">
+                    <input type="number" step="any" class="form-control" id="diameter_tabung" name="diameter_tabung" value="{{ $product->diameter_tabung }}">
                 </div>
             </div>
             <div class="form-row">
@@ -146,7 +147,7 @@
                     <label>:</label>
                 </div>
                 <div class="form-group col-md-8">
-                    <input type="number" step="any" class="form-control" id="berat_total" name="berat_total">
+                    <input type="number" step="any" class="form-control" id="berat_total" name="berat_total" value="{{ $product->berat_total }}">
                 </div>
             </div>
             <div class="form-row">
@@ -157,7 +158,7 @@
                     <label>:</label>
                 </div>
                 <div class="form-group col-md-8">
-                    <input type="number" step="any" class="form-control" id="fire_rating" name="fire_rating">
+                    <input type="number" step="any" class="form-control" id="fire_rating" name="fire_rating" value="{{ $product->fire_rating }}">
                 </div>
             </div>
             <div class="form-row">
@@ -170,47 +171,6 @@
             </div>
          
         </form>
-        
-        <h3 class="mt-5 text-center">Tampilan Daftar Input Produk</h3>
-        <table class="table table-bordered my-5">
-            <thead class="thead-light">
-                <tr>
-                    <th>No</th>
-                    <th>Kode Barang</th>
-                    <th>Nama Barang</th>
-                    <th>Kategori</th>
-                    <th>Harga</th>
-                    <th>Jumlah Stok</th>
-                    <th class="table-actions">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @php
-                    $no = 1;
-                @endphp
-                @foreach ($products as $product)
-                <tr>
-
-                    <td>{{ $no }}</td>
-                    <td>{{ $product->kode_barang }}</td>
-                    <td>{{ $product->nama_barang }}</td>
-                    <td>{{ $product->kategori }}</td>
-                    <td>{{ $product->harga }}</td>
-                    <td>{{ $product->jumlah_stok }}</td>
-                        
-                    
-                    <td class="table-actions">
-                        <a href="{{ route('products-edit', $product->id) }}" class="btn btn-info btn-sm">Edit</a>
-                        <button class="btn btn-danger btn-sm">Delete</button>
-                        <button class="btn btn-success btn-sm">View</button>
-                    </td>
-                </tr>
-                @php
-                    $no++;
-                @endphp
-                @endforeach
-            </tbody>
-        </table>
     </div>
 
      @include('script')

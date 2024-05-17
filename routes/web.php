@@ -23,6 +23,8 @@ Route::post('/profile', [ProfileController::class,'store'])->name('profile.store
 
 
 Route::get('/products', [ProductsController::class,'index'])->name('products');
+Route::get('/products/edit/{id}', [ProductsController::class,'edit'])->name('products-edit');
+Route::put('/products/update/{id}', [ProductsController::class, 'update'])->name('products-update');
 Route::post('/products', [ProductsController::class,'store'])->name('products.store');
 Route::get('/products-list', [ProductsController::class,'productList'])->name('products-list');
 
@@ -30,6 +32,7 @@ Route::get('/products-list', [ProductsController::class,'productList'])->name('p
 Route::get('/order/{id}', [OrderController::class,'order'])->name('order');
 Route::get('/total-order', [OrderController::class,'totalOrder'])->name('total-order');
 Route::post('/create-order', [OrderController::class,'createOrder'])->name('create-order');
+Route::put('/total-order/update/{id}', [OrderController::class,'update'])->name('total-order-update');
 Route::delete('/total-order/{id}', [OrderController::class, 'delete'])->name('total-order-delete');
 
 

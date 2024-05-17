@@ -28,6 +28,16 @@ class OrderController extends Controller
         TotalOrder::create($data);
         return redirect()->route('total-order')->with('success', 'Pesanan berhasil dibuat.');
     }
+
+     public function update(Request $request, $id)
+    {
+        $request->validate([
+            'jumlah_pesanan'=>'required|numeric',
+        ]);
+        TotalOrder::find($id)->update($request->all());
+        return back()->with('success', 'Pesanan berhasil diperbarui.');
+
+    }
     public function delete($id){
         $totalOrder = TotalOrder::find($id);
         $totalOrder->delete();

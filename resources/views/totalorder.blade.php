@@ -47,7 +47,12 @@
                     <td>{{ $no }}</td>
                     <td>{{ $total->product->nama_barang }}</td>
                     <td>
-                        <input type="text" class="form-control" id="jumlah_pesanan" name="jumlah_pesanan" value="{{ $total->jumlah_pesanan }}">
+                <form action="{{ route('total-order-update', $total->id) }}" method="POST" class="form-inline">
+                @csrf
+                @method('PUT')
+                <input type="number" class="form-control" id="jumlah_pesanan" name="jumlah_pesanan" value="{{ $total->jumlah_pesanan }}">
+                <button type="submit" class="btn btn-primary btn-sm ml-2">Update</button>
+            </form>
                     </td>
                     <td>{{ $total->product->harga }}</td>
                     @php
@@ -62,7 +67,33 @@
                                 @method('DELETE')
                                 <button class="btn btn-danger btn-sm mx-1">Delete</button>
                             </form>
-                            <button class="btn btn-success btn-sm mx-1">View</button>
+                            <button class="btn btn-success btn-sm mx-1" data-toggle="modal" data-target="#view{{ $total->id }}">View</button>
+                        <div class="modal fade" id="view{{ $total->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Lihat Pesanan</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                             Kode Barang : {{ $total->product->kode_barang }}
+                             <br>
+                             Nama Barang : {{ $total->product->nama_barang }}
+                             <br>
+                             Kategori : {{ $total->product->kategori  }}
+                             <br>
+                             Harga : {{ $total->product->harga }}
+                             <br>
+                             Jumlah Pesan : {{ $total->jumlah_pesanan }}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
                         </div>
                     </td>
                 </tr>
@@ -85,6 +116,8 @@
 
 
     </div>
+
+
 
    @include('script')
 </body>
