@@ -38,7 +38,7 @@ class OrderController extends Controller
         return back()->with('success', 'Pesanan berhasil diperbarui.');
 
     }
-    public function delete($id){
+    public function destroy($id){
         $totalOrder = TotalOrder::find($id);
         $totalOrder->delete();
         return redirect()->route('total-order')->with('success', 'Pesanan berhasil dihapus.');

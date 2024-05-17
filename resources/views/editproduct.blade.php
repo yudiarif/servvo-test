@@ -165,8 +165,8 @@
                 <div class="form-group col-md-4 d-flex">
                 </div>
                 <div class="form-group col-md-8">
-                       <button type="submit" class="btn btn-primary">Input</button>
-            <button type="reset" class="btn btn-secondary">Batal</button>
+                       <button type="submit" class="btn btn-primary">Edit</button>
+                        <button type="back" class="btn btn-secondary">Batal</button>
                 </div>
             </div>
          

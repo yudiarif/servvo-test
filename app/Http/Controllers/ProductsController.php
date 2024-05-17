@@ -26,7 +26,7 @@ class ProductsController extends Controller
             'kategori' => 'required',
             'harga' => 'required',
             'jumlah_stok' => 'required',
-            'foto' => 'required|image|mimes:jpeg,png,jpg',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg',
             'kapasitas' => 'required',
             'tinggi' => 'required',
             'lebar' => 'required',
@@ -61,7 +61,7 @@ class ProductsController extends Controller
             'kategori' => 'required',
             'harga' => 'required',
             'jumlah_stok' => 'required',
-            'foto' => 'required|image|mimes:jpeg,png,jpg',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg',
             'kapasitas' => 'required',
             'tinggi' => 'required',
             'lebar' => 'required',
@@ -69,7 +69,7 @@ class ProductsController extends Controller
             'berat_total' => 'required',
             'fire_rating' => 'required',
         ]);
-        $product = Product::findOrFail($id);
+        $product = Product::find($id);
         $data = $request->all();
 
         if ($request->hasFile('foto')) {
@@ -88,9 +88,17 @@ class ProductsController extends Controller
 
         return redirect()->route('products')->with('success', 'Product updated successfully.');
     }
+     public function show($id){
+        $product = Product::find($id);
+        return view('showproduct', compact('product'));
+    }
+
 
     public function destroy($id){
         $product = Product::find($id);
+         if ($product->foto && file_exists(public_path('images/' . $product->foto))) {
+            unlink(public_path('images/' . $product->foto));
+        }
         $product->delete();
         return redirect()->route('products')->with('success', 'Product berhasil dihapus.');
     }

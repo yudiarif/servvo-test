@@ -36,7 +36,7 @@
                     <label>:</label>
                 </div>
                 <div class="form-group col-md-8">
-                    <input type="text" class="form-control" id="kode_barang" name="kode_barang">
+                    <input type="text" class="form-control" id="kode_barang" name="kode_barang" required>
                 </div>
             </div>
             <div class="form-row">
@@ -47,7 +47,7 @@
                     <label>:</label>
                 </div>
                 <div class="form-group col-md-8">
-                    <input type="text" class="form-control" id="nama_barang" name="nama_barang">
+                    <input type="text" class="form-control" id="nama_barang" name="nama_barang" required>
                 </div>
             </div>
             <div class="form-row">
@@ -58,7 +58,7 @@
                     <label>:</label>
                 </div>
                 <div class="form-group col-md-8">
-                    <input type="text" class="form-control" id="kategori" name="kategori">
+                    <input type="text" class="form-control" id="kategori" name="kategori" required>
                 </div>
             </div>
             <div class="form-row">
@@ -69,7 +69,7 @@
                     <label>:</label>
                 </div>
                 <div class="form-group col-md-8">
-                    <input type="number" step="any" class="form-control" id="harga" name="harga">
+                    <input type="number" step="any" class="form-control" id="harga" name="harga" required>
                 </div>
             </div>
             <div class="form-row">
@@ -80,7 +80,7 @@
                     <label>:</label>
                 </div>
                 <div class="form-group col-md-8">
-                    <input type="number" step="any" class="form-control" id="jumlah_stok" name="jumlah_stok">
+                    <input type="number" step="any" class="form-control" id="jumlah_stok" name="jumlah_stok" required>
                 </div>
             </div>
             <div class="form-row">
@@ -91,7 +91,7 @@
                     <label>:</label>
                 </div>
                 <div class="form-group col-md-8">
-                    <input type="file" class="form-control" id="foto" name="foto">
+                    <input type="file" class="form-control" id="foto" name="foto" required>
                 </div>
             </div>
             <div class="form-row">
@@ -102,7 +102,7 @@
                     <label>:</label>
                 </div>
                 <div class="form-group col-md-8">
-                    <input type="number" step="any"class="form-control" id="kapasitas" name="kapasitas">
+                    <input type="number" step="any"class="form-control" id="kapasitas" name="kapasitas" required>
                 </div>
             </div>
             <div class="form-row">
@@ -113,7 +113,7 @@
                     <label>:</label>
                 </div>
                 <div class="form-group col-md-8">
-                    <input type="number" step="any" class="form-control" id="tinggi" name="tinggi">
+                    <input type="number" step="any" class="form-control" id="tinggi" name="tinggi" required>
                 </div>
             </div>
             <div class="form-row">
@@ -124,7 +124,7 @@
                     <label>:</label>
                 </div>
                 <div class="form-group col-md-8">
-                    <input type="number" step="any" class="form-control" id="lebar" name="lebar">
+                    <input type="number" step="any" class="form-control" id="lebar" name="lebar" required>
                 </div>
             </div>
             <div class="form-row">
@@ -135,7 +135,7 @@
                     <label>:</label>
                 </div>
                 <div class="form-group col-md-8">
-                    <input type="number" step="any" class="form-control" id="diameter_tabung" name="diameter_tabung">
+                    <input type="number" step="any" class="form-control" id="diameter_tabung" name="diameter_tabung" required>
                 </div>
             </div>
             <div class="form-row">
@@ -146,7 +146,7 @@
                     <label>:</label>
                 </div>
                 <div class="form-group col-md-8">
-                    <input type="number" step="any" class="form-control" id="berat_total" name="berat_total">
+                    <input type="number" step="any" class="form-control" id="berat_total" name="berat_total" required>
                 </div>
             </div>
             <div class="form-row">
@@ -157,7 +157,7 @@
                     <label>:</label>
                 </div>
                 <div class="form-group col-md-8">
-                    <input type="number" step="any" class="form-control" id="fire_rating" name="fire_rating">
+                    <input type="number" step="any" class="form-control" id="fire_rating" name="fire_rating" required>
                 </div>
             </div>
             <div class="form-row">
@@ -200,9 +200,15 @@
                         
                     
                     <td class="table-actions">
-                        <a href="{{ route('products-edit', $product->id) }}" class="btn btn-info btn-sm">Edit</a>
-                        <button class="btn btn-danger btn-sm">Delete</button>
-                        <button class="btn btn-success btn-sm">View</button>
+                        <div class="btn-group">
+                            <a href="{{ route('products-edit', $product->id) }}" class="btn btn-info btn-sm">Edit</a>
+                            <form action="{{ route('products-delete', $product->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                            <a href="{{ route('products-show', $product->id) }}" class="btn btn-success btn-sm">View</a>
+                        </div>
                     </td>
                 </tr>
                 @php

@@ -19,12 +19,12 @@ return new class extends Migration
             $table->integer('harga');
             $table->integer('jumlah_stok');
             $table->string('foto')->nullable();
-            $table->decimal('kapasitas',10,2)->nullable();
-            $table->decimal('tinggi',10,2)->nullable();
-            $table->decimal('lebar',10,2)->nullable();
-            $table->decimal('diameter_tabung',10,2)->nullable();
-            $table->decimal('berat_total', 10, 2)->nullable();
-            $table->decimal('fire_rating',10,2)->nullable();
+            $table->decimal('kapasitas',10,2);
+            $table->decimal('tinggi',10,2);
+            $table->decimal('lebar',10,2);
+            $table->decimal('diameter_tabung',10,2);
+            $table->decimal('berat_total', 10, 2);
+            $table->decimal('fire_rating',10,2);
             $table->timestamps();
         });
     }
